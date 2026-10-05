@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "tiers": [
+    {
+      "minKg": 10,
+      "pct": 10
+    },
+    {
+      "minKg": 5,
+      "pct": 5
+    }
+  ],
+  "updated": "2026-10-05"
+}
