@@ -264,13 +264,17 @@ body{background:#f8f3e8}
 .filters{display:flex;gap:8px;overflow:auto;padding:2px 2px 8px}
 .filter{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 15px;border-radius:99px;white-space:nowrap;cursor:pointer;font-weight:700}
 .filter.active,.filter:hover{background:var(--green);color:#fff;border-color:var(--green)}
-.board{grid-template-columns:repeat(3,1fr);gap:18px}
+.board{grid-template-columns:1fr;gap:18px}
 .cat{box-shadow:var(--shadow);border:1px solid var(--line)}
 .cat header{padding:16px 18px}
 .cat h3{font-size:25px}
-.cat ul{padding:8px}
-.row{min-height:62px;padding:9px 10px}
+.cat ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px}
+.row{min-width:0;min-height:62px;padding:9px 10px;border:1px solid var(--line)}
+.pack-item{grid-column:1/-1}
+.product-info{flex:1;min-width:0}
+.row .nm{display:block;min-width:0}
 .row .nm{font-size:16.5px}
+.rate{display:block;color:var(--muted);font-size:12px;line-height:1.25;font-weight:600}
 .add{padding:5px 13px;font-size:14px}
 .step output{min-width:72px;font-size:14px}
 .empty-search{grid-column:1/-1;text-align:center;padding:35px;background:var(--paper);border:1px dashed var(--line);border-radius:15px;color:var(--muted)}
@@ -287,12 +291,17 @@ body{background:#f8f3e8}
 .bar{max-width:850px}
 footer{margin-top:20px}
 @media (max-width:1000px){
-  .board{grid-template-columns:repeat(2,1fr)}
+  .cat ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .feature-grid{grid-template-columns:1fr 1fr}
   .hero-badge{right:2%;bottom:8%}
 }
 @media (max-width:650px){
-  .board{grid-template-columns:1fr}
+  .order{grid-template-columns:1fr}
+  .cat ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
+  .row{flex-wrap:nowrap;gap:6px;padding:8px}
+  .add{padding:4px 8px;font-size:13px}
+  .step button{width:30px;height:36px}
+  .step output{min-width:42px;font-size:13px}
   .feature-grid{grid-template-columns:1fr}
   .info{align-items:flex-start;flex-direction:column;gap:24px;padding:24px}
   .store-head{display:block}
@@ -300,7 +309,6 @@ footer{margin-top:20px}
   .hero-badge{position:static;display:inline-block;margin-top:18px}
   .checkout-card{position:static}
 }
-
 </style>
 
 <meta name="theme-color" content="#143d24">
@@ -322,7 +330,7 @@ footer{margin-top:20px}
 
 </head>
 <body>
-<div class="top-note">🏠 घरची चव • ताजे घरगुती पदार्थ • छत्रपती संभाजीनगर • बाहेरगावी पार्सल उपलब्ध</div>
+<!-- <div class="top-note">🏠 घरची चव • ताजे घरगुती पदार्थ • छत्रपती संभाजीनगर • बाहेरगावी पार्सल उपलब्ध</div> -->
 <a class="skip-link" href="#main">मुख्य मजकुराकडे जा</a>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -331,7 +339,7 @@ footer{margin-top:20px}
     <a class="brand" href="#top">यशोदा गृहचव</a>
     <ul>
       <li><a href="#menu">पदार्थ</a></li>
-      <li><a href="#how">ऑर्डर कशी करावी</a></li>
+      <!-- <li><a href="#how">ऑर्डर कशी करावी</a></li> -->
       <li><a href="#order">तुमची ऑर्डर</a></li>
       <li><a href="#contact">संपर्क</a></li>
     </ul>
@@ -355,16 +363,16 @@ footer{margin-top:20px}
       <span class="eyebrow">🌿 घरगुती • पारंपरिक • प्रेमाने तयार</span>
       <h1>यशोदा गृहचव</h1>
       <p class="sub">घरच्या चवीचे पापड, वडे, शेवया, फराळ, लाडू आणि पारंपरिक पदार्थ — आता सहज ऑर्डर करा.</p>
-      <ul class="hero-points">
+      <!-- <ul class="hero-points">
         <li>निवडक साहित्य</li>
         <li>घरगुती पद्धत</li>
         <li>ऑर्डरनुसार तयारी</li>
-      </ul>
+      </ul> -->
       <div class="btns">
-        <a class="btn btn-wa" href="#menu">🛒 पदार्थ पाहा व ऑर्डर करा</a>
+        <a class="btn btn-wa" href="#menu">पदार्थ पाहा व ऑर्डर करा</a>
         <a class="btn btn-line" href="tel:+919049803588">📞 फोन करा</a>
       </div>
-      <div class="hero-badge">किमान ऑर्डर<br><strong>500 ग्रॅम</strong></div>
+      <!-- <div class="hero-badge">किमान ऑर्डर<br><strong>500 ग्रॅम</strong></div> -->
     </div>
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
@@ -385,7 +393,7 @@ footer{margin-top:20px}
 
 <div class="strip">
   <div class="wrap">
-    <span>किमान ऑर्डर <b>प्रत्येक पदार्थ 500 ग्रॅम</b></span>
+    <span>किमान ऑर्डर <b>प्रत्येक पदार्थ 500 ग्रॅम (नागली पापड 100 नग)</b></span>
     <span>ऑर्डर <b>3 ते 4 दिवसांत</b> मिळेल</span>
     <span>सण-समारंभासाठी <b>आगाऊ ऑर्डर</b></span>
   </div>
@@ -394,13 +402,13 @@ footer{margin-top:20px}
 <main class="wrap" id="main">
 
 
-  <section aria-label="यशोदा गृहचव वैशिष्ट्ये" style="padding-bottom:8px">
+  <!-- <section aria-label="यशोदा गृहचव वैशिष्ट्ये" style="padding-bottom:8px">
     <div class="feature-grid">
       <div class="feature"><div class="feature-icon">🏠</div><div><b>घरगुती चव</b><span>पारंपरिक पद्धतीने तयार</span></div></div>
       <div class="feature"><div class="feature-icon">🥣</div><div><b>ताजे बनवलेले</b><span>ऑर्डरनुसार काळजीपूर्वक तयारी</span></div></div>
       <div class="feature"><div class="feature-icon">📦</div><div><b>पार्सल सुविधा</b><span>छत्रपती संभाजीनगरबाहेरही उपलब्ध</span></div></div>
     </div>
-  </section>
+  </section> -->
 
   <section aria-labelledby="why-h" style="padding-top:56px">
     <div class="sec-head"><h2 id="why-h">घरची चव, घरच्या पद्धतीने</h2></div>
@@ -435,10 +443,10 @@ footer{margin-top:20px}
       <div class="filters" id="filters" aria-label="पदार्थ श्रेणी"></div>
     </div>
     <div class="board" id="board"></div>
-    <p class="hint">💡 प्रत्येक पदार्थाची किमान ऑर्डर 500 ग्रॅम आहे. किंमत व उपलब्धता WhatsApp वर कळवली जाईल.</p>
+    <p class="hint">💡 किमान ऑर्डर प्रत्येक पदार्थ 500 ग्रॅम (नागली पापड 100 नग). दिलेले दर प्रति किलो आहेत, जोपर्यंत वेगळे नमूद केलेले नाही; दर नसलेल्या पदार्थांची किंमत WhatsApp वर कळवा.</p>
   </section>
 
-  <section id="how" aria-labelledby="how-h">
+  <!-- <section id="how" aria-labelledby="how-h">
     <div class="sec-head"><h2 id="how-h">ऑर्डर कशी करावी</h2></div>
     <ol class="how">
       <li><b>पदार्थ निवडा</b><span>यादीतून हवे ते पदार्थ जोडा.</span></li>
@@ -446,17 +454,17 @@ footer{margin-top:20px}
       <li><b>WhatsApp वर पाठवा</b><span>तुमची यादी आमच्याकडे येईल. आम्ही किंमत कळवू.</span></li>
       <li><b>3 ते 4 दिवसांत मिळवा</b><span>ऑर्डर तयार करून तुम्हाला दिली जाईल.</span></li>
     </ol>
-  </section>
+  </section> -->
 
   <section id="order" aria-labelledby="order-h">
     <div class="sec-head"><h2 id="order-h">तुमची ऑर्डर</h2></div>
     <div class="order">
       <div class="panel">
         <div class="cart-head"><h3>तुमची ऑर्डर</h3><span class="cart-count" id="cartCount">0 पदार्थ</span></div>
-        <p class="price-note">किंमत ऑर्डर पाठवल्यानंतर WhatsApp वर कळवली जाईल.</p>
+        <p class="price-note">पदार्थांचे दर यादीत दिले आहेत; दर नसलेल्या पदार्थांची किंमत WhatsApp वर कळवली जाईल.</p>
         <p class="empty" id="empty">अजून कोणताही पदार्थ निवडलेला नाही. वरील यादीतून "जोडा" दाबा.</p>
         <ul class="lines" id="lines" hidden></ul>
-        <div class="total" id="total" hidden><span>एकूण वजन</span><span id="totalw">0</span></div>
+        <div class="total" id="total" hidden><span>एकूण प्रमाण</span><span id="totalw">0</span></div>
       </div>
       <div class="panel">
         <h3>तुमची माहिती</h3>
@@ -524,22 +532,60 @@ footer{margin-top:20px}
   var PHONE = "919049803588", MIN = 500, STEP = 500, MAX = 50000;
   var STORAGE_KEY = "yashoda-grihachav-cart-v2";
   var DATA = [
-    {t:"पापड", c:"c-saffron", i:["गहू-तांदूळ","तांदूळ","नागली","बाजरी","ज्वारी","दादर","उडीद (लाटलेला)","मूग","लसूण","साबुदाणा-बटाटा","साबुदाणा पळी","चिकणी"]},
-    {t:"वडे व शेवया", c:"c-green", i:["मठ-मूग वडे","गव्हाचे वडे","बाजरीचे वडे","नागलीचे वडे","मक्याचे वडे","हाताच्या शेवया","पाटावरच्या शेवया"]},
+    {t:"पापड", c:"c-saffron", i:["गहू-तांदूळ","तांदूळ","नागली","बाजरी","ज्वारी","दादर","उडीद","उडीद (लाटलेला)","मूग","लसूण","साबुदाणा-बटाटा","साबुदाणा पळी","चिकणी","नागली पापड (100 नग)"]},
+    {t:"वडे व शेवया", c:"c-green", i:["मठ-मूग वडे","मूग वडे","गव्हाचे वडे","बाजरीचे वडे","नागलीचे वडे","मक्याचे वडे","गव्हाच्या शेवया","हाताच्या शेवया","पाटावरच्या शेवया"]},
     {t:"दिवाळी फराळ", c:"c-maroon", i:["चकली","करंजी","अनारसे (तेलातील)","अनारसे (तुपातील)","शंकरपाळे (गोड)","शंकरपाळे (खारे)","सांजोरी (गूळ)","सांजोरी (साखर)","सातले","बेसन लाडू","रवा-मैदा लाडू","शेव लाडू"]},
     {t:"पौष्टिक लाडू", c:"c-maroon", i:["ड्रायफ्रूट लाडू","उडीद ड्रायफ्रूट लाडू","मेथी ड्रायफ्रूट लाडू","साखर ड्रायफ्रूट लाडू","तिळाचे लाडू"]},
     {t:"वाळवण व इतर", c:"c-saffron", i:["गव्हाची कुरडई","साबुदाणा-बटाटा चकली","बटाटा कीस","बटाटा वेफर्स","खारोडी","काटके","बिबडी"]},
-    {t:"मसाले व लोणचे", c:"c-green", i:["गरम मसाला","लाल तिखट","हळद","कैरीचे लोणचे"]}
+    {t:"मसाले व लोणचे", c:"c-green", i:["गरम मसाला","लाल तिखट","हळद","कैरीचे लोणचे","लाल लोणचे"]}
   ];
+  var RATES = {
+    "पापड":{
+      "गहू-तांदूळ":330,"तांदूळ":320,"नागली":400,"बाजरी":340,"ज्वारी":340,
+      "उडीद":340,"उडीद (लाटलेला)":470,"मूग":490,"लसूण":490,
+      "साबुदाणा-बटाटा":480,"साबुदाणा पळी":400,"चिकणी":380,
+      "नागली पापड (100 नग)":{amount:610,basis:"100 नग",quantityUnit:"pieces"}
+    },
+    "वडे व शेवया":{
+      "मठ-मूग वडे":400,"मूग वडे":400,"गव्हाचे वडे":400,"बाजरीचे वडे":400,
+      "नागलीचे वडे":400,"मक्याचे वडे":415,"गव्हाच्या शेवया":1210
+    },
+    "दिवाळी फराळ":{
+      "चकली":650,"करंजी":650,"अनारसे (तेलातील)":630,"अनारसे (तुपातील)":770,
+      "शंकरपाळे (गोड)":450,"शंकरपाळे (खारे)":400,"सांजोरी (गूळ)":550,
+      "सांजोरी (साखर)":450,"सातले":550,"बेसन लाडू":550,"रवा-मैदा लाडू":440,
+      "शेव लाडू":450
+    },
+    "पौष्टिक लाडू":{
+      "ड्रायफ्रूट लाडू":1890,"उडीद ड्रायफ्रूट लाडू":1330,
+      "मेथी ड्रायफ्रूट लाडू":1260,"साखर ड्रायफ्रूट लाडू":850,"तिळाचे लाडू":490
+    },
+    "वाळवण व इतर":{"गव्हाची कुरडई":530,"साबुदाणा-बटाटा चकली":490,"बटाटा वेफर्स":480},
+    "मसाले व लोणचे":{"लाल तिखट":640,"हळद":410,"लाल लोणचे":560}
+  };
   var cart = {};
   var activeCategory = "सर्व";
   var searchTerm = "";
   var $ = function(id){return document.getElementById(id);};
 
-  function fmt(g){
+  function rateFor(group,name){
+    var rate = RATES[group] && RATES[group][name];
+    if(typeof rate === "number") return {amount:rate,basis:"किलो",quantityUnit:"g"};
+    return rate || null;
+  }
+
+  function fmt(g,unit){
+    if(unit === "pieces") return g + " नग";
     if(g < 1000) return g + " ग्रॅम";
     var kg = g / 1000;
     return (kg % 1 === 0 ? String(kg) : kg.toFixed(1).replace(/\.0$/, "")) + " किलो";
+  }
+
+  function totalFmt(weight,pieces){
+    var totals = [];
+    if(weight) totals.push(fmt(weight));
+    if(pieces) totals.push(fmt(pieces,"pieces"));
+    return totals.join(" + ");
   }
 
   function saveCart(){
@@ -552,9 +598,12 @@ footer{margin-top:20px}
       if(!saved || typeof saved !== "object") return;
       Object.keys(saved).forEach(function(k){
         var it = saved[k];
-        if(it && typeof it.g === "number" && it.g >= MIN && it.g <= MAX &&
+        var unit = it && it.unit === "pieces" ? "pieces" : "g";
+        var minimum = unit === "pieces" ? 100 : MIN;
+        var increment = unit === "pieces" ? 100 : STEP;
+        if(it && typeof it.g === "number" && it.g >= minimum && it.g <= MAX &&
            typeof it.name === "string" && typeof it.group === "string"){
-          cart[k] = {group:it.group,name:it.name,g:Math.round(it.g/STEP)*STEP};
+          cart[k] = {group:it.group,name:it.name,g:Math.round(it.g/increment)*increment,unit:unit};
         }
       });
     } catch(e) {}
@@ -611,22 +660,33 @@ footer{margin-top:20px}
       var ul = document.createElement("ul");
       matches.forEach(function(name){
         var key = cat.t + "|" + name, item = cart[key];
+        var rate = rateFor(cat.t,name);
         var li = document.createElement("li");
-        li.className = "row" + (item ? " on" : "");
+        li.className = "row" + (item ? " on" : "") + (rate && rate.quantityUnit === "pieces" ? " pack-item" : "");
 
+        var productInfo = document.createElement("span");
+        productInfo.className = "product-info";
         var nm = document.createElement("span");
         nm.className = "nm";
         nm.textContent = name;
-        li.appendChild(nm);
+        productInfo.appendChild(nm);
+        var rateLabel = document.createElement("span");
+        rateLabel.className = "rate";
+        rateLabel.textContent = rate
+          ? "₹" + rate.amount.toLocaleString("en-IN") + " / " + rate.basis
+          : "दर WhatsApp वर विचारा";
+        productInfo.appendChild(rateLabel);
+        li.appendChild(productInfo);
 
         if(!item){
           var b = document.createElement("button");
           b.type = "button";
           b.className = "add";
           b.textContent = "+ जोडा";
-          b.setAttribute("aria-label", name + " जोडा, किमान 500 ग्रॅम");
+          var unit = rate && rate.quantityUnit === "pieces" ? "pieces" : "g";
+          b.setAttribute("aria-label", name + " जोडा, किमान " + (unit === "pieces" ? "100 नग" : "500 ग्रॅम"));
           b.addEventListener("click", function(){
-            cart[key] = {group:cat.t,name:name,g:MIN};
+            cart[key] = {group:cat.t,name:name,g:unit === "pieces" ? 100 : MIN,unit:unit};
             update(key);
             toast(name + " ऑर्डरमध्ये जोडले");
           });
@@ -652,32 +712,35 @@ footer{margin-top:20px}
   function stepper(key, item){
     var w = document.createElement("div");
     w.className = "step";
+    var minimum = item.unit === "pieces" ? 100 : MIN;
+    var increment = item.unit === "pieces" ? 100 : STEP;
+    var maximum = MAX;
 
     var m = document.createElement("button");
     m.type = "button"; m.textContent = "−";
     m.setAttribute("aria-label", item.name + " कमी करा");
 
     var o = document.createElement("output");
-    o.textContent = fmt(item.g);
-    o.setAttribute("aria-label", "निवडलेले वजन " + fmt(item.g));
+    o.textContent = fmt(item.g,item.unit);
+    o.setAttribute("aria-label", "निवडलेले प्रमाण " + fmt(item.g,item.unit));
 
     var p = document.createElement("button");
     p.type = "button"; p.textContent = "+";
     p.setAttribute("aria-label", item.name + " वाढवा");
 
     m.addEventListener("click", function(){
-      if(item.g <= MIN) {
+      if(item.g <= minimum) {
         delete cart[key];
         toast(item.name + " ऑर्डरमधून काढले");
       } else {
-        item.g -= STEP;
+        item.g -= increment;
       }
       update(key);
     });
 
     p.addEventListener("click", function(){
-      if(item.g < MAX) item.g += STEP;
-      else toast("कमाल वजन 50 किलो आहे");
+      if(item.g < maximum) item.g += increment;
+      else toast(item.unit === "pieces" ? "कमाल प्रमाण 50,000 नग आहे" : "कमाल वजन 50 किलो आहे");
       update(key);
     });
 
@@ -704,13 +767,14 @@ footer{margin-top:20px}
   }
 
   function summary(){
-    var keys = Object.keys(cart), total = 0;
+    var keys = Object.keys(cart), totalWeight = 0, totalPieces = 0;
     var lines = $("lines");
     lines.innerHTML = "";
 
     keys.forEach(function(k){
       var it = cart[k];
-      total += it.g;
+      if(it.unit === "pieces") totalPieces += it.g;
+      else totalWeight += it.g;
 
       var li = document.createElement("li");
       var n = document.createElement("span");
@@ -723,7 +787,7 @@ footer{margin-top:20px}
 
       var q = document.createElement("span");
       q.className = "l-q";
-      q.textContent = fmt(it.g);
+      q.textContent = fmt(it.g,it.unit);
 
       var r = document.createElement("button");
       r.type = "button";
@@ -747,9 +811,10 @@ footer{margin-top:20px}
     $("empty").hidden = has;
     lines.hidden = !has;
     $("total").hidden = !has;
-    $("totalw").textContent = fmt(total);
+    var total = totalFmt(totalWeight,totalPieces);
+    $("totalw").textContent = total;
     $("bc").textContent = keys.length;
-    $("bw").textContent = fmt(total);
+    $("bw").textContent = total;
     $("cartCount").textContent = keys.length + (keys.length === 1 ? " पदार्थ" : " पदार्थ");
     $("bar").classList.toggle("on", has);
 
@@ -769,11 +834,15 @@ footer{margin-top:20px}
     Object.keys(groups).forEach(function(g){
       m += "\n" + g + ":\n";
       groups[g].forEach(function(it){
-        m += "• " + it.name + " – " + fmt(it.g) + "\n";
+        var rate = rateFor(it.group,it.name);
+        var rateText = rate
+          ? " – ₹" + rate.amount.toLocaleString("en-IN") + " / " + rate.basis
+          : " – दर WhatsApp वर कळवा";
+        m += "• " + it.name + " – " + fmt(it.g,it.unit) + rateText + "\n";
       });
     });
 
-    m += "\nएकूण वजन: " + fmt(total) + "\n";
+    m += "\nएकूण प्रमाण: " + total + "\n";
     var nm = $("fName").value.trim();
     var ad = $("fAddr").value.trim();
     var nt = $("fNote").value.trim();
